@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -26,8 +27,19 @@ kotlin {
         }
         binaries.executable()
     }
+
+    jvm()
     
     sourceSets {
+
+        jvmMain{
+            dependencies{
+                implementation(compose.desktop.currentOs)
+                implementation(compose.desktop.common)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.9.0")
+
+            }
+        }
 
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -36,10 +48,30 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.jetbrains.compose.window.size)
+
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.materialKolor)
+            implementation(libs.decompose)
+            implementation(libs.decompose.extensions)
+
         }
     }
 }
 
+
+compose.desktop {
+    application {
+        mainClass = "su.pank.site.MainKt"
+
+        nativeDistributions {
+
+
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "su.pank.site"
+            packageVersion = "1.0.0"
+        }
+    }
+}
 
