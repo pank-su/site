@@ -46,7 +46,6 @@ fun AchivementContent(component: AchivementComponent, modifier: Modifier = Modif
         KamelImageBox({ painter }, modifier = modifier) {
             val image = rememberGraphicsLayer()
 
-            val coroutineScope = rememberCoroutineScope()
 
 
             Image(
@@ -54,14 +53,16 @@ fun AchivementContent(component: AchivementComponent, modifier: Modifier = Modif
                 contentDescription = null,
                 modifier = Modifier.drawWithCache {
                     onDrawWithContent {
-                        image.record {
-                            this@onDrawWithContent.drawContent()
-                        }
                         if (!isGettedColor) {
+
                             isGettedColor = true
-                            coroutineScope.launch {
-                                val bitmap = image.toImageBitmap()
-                                state.primary = bitmap.themeColor(primary)
+                            CoroutineScope(Dispatchers.Unconfined).launch {
+                                // fuck dynamic color
+                                //image.record {
+                                    //this@onDrawWithContent.drawContent()
+                                //}
+                                //val bitmap = image.toImageBitmap()
+                                //state.primary = bitmap.themeColor(primary)
                             }
                         }
                         this@onDrawWithContent.drawContent()
