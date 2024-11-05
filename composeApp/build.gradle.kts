@@ -57,6 +57,9 @@ kotlin {
             implementation(libs.decompose.extensions)
 
         }
+
+        wasmJsMain.dependencies {
+        }
     }
 }
 
