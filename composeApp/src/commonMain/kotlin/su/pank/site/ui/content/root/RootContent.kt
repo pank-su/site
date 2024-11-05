@@ -59,7 +59,7 @@ fun RootContent(component: RootComponent, modifier: Modifier = Modifier) {
                         modifier = Modifier.widthIn(max = 400.dp).fillMaxWidth().height(240.dp)
                     )
                 }
-                LoadProjectsContent(component.loadProjectsComponent, Modifier)
+                LoadProjectsContent(component.loadAchivementsComponent, Modifier)
 
 
             }
