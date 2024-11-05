@@ -2,6 +2,8 @@ package su.pank.site.ui.content.root
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -37,31 +39,34 @@ fun RootContent(component: RootComponent, modifier: Modifier = Modifier) {
             }
         }
     }
+    val scrollState = rememberScrollState()
     AppTheme {
-        Surface(modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerLow) {
-            Column(
-                modifier = Modifier.widthIn(max = 1200.dp).padding(start = padding, end = padding, top = padding),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Image(painterResource(Res.drawable.logo), null, Modifier.widthIn(max = 500.dp).fillMaxWidth())
-                Spacer(modifier = Modifier.height(40.dp))
-                FlowRow(
-                    Modifier.widthIn(max = 1200.dp),
-                    horizontalArrangement = Arrangement.spacedBy(32.dp),
-                    verticalArrangement = Arrangement.spacedBy(32.dp)
+        BoxWithConstraints(modifier=Modifier.fillMaxSize()) {
+            Surface(modifier.fillMaxSize().verticalScroll(scrollState), color = MaterialTheme.colorScheme.surfaceContainerLow) {
+                Column(
+                    modifier = Modifier.widthIn(max = 1200.dp).padding(start = padding, end = padding, top = padding),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    ProfileContent(
-                        component.profileComponent,
-                        Modifier.widthIn(max = 700.dp).fillMaxWidth().height(240.dp)
-                    )
-                    AboutContent(
-                        component.aboutComponent,
-                        modifier = Modifier.widthIn(max = 400.dp).fillMaxWidth().height(240.dp)
-                    )
+                    Image(painterResource(Res.drawable.logo), null, Modifier.widthIn(max = 500.dp).fillMaxWidth())
+                    Spacer(modifier = Modifier.height(40.dp))
+                    FlowRow(
+                        Modifier.widthIn(max = 1200.dp),
+                        horizontalArrangement = Arrangement.spacedBy(32.dp),
+                        verticalArrangement = Arrangement.spacedBy(32.dp)
+                    ) {
+                        ProfileContent(
+                            component.profileComponent,
+                            Modifier.widthIn(max = if (this@BoxWithConstraints.maxWidth > 1190.dp) 700.dp else 1200.dp).fillMaxWidth().height(240.dp)
+                        )
+                        AboutContent(
+                            component.aboutComponent,
+                            modifier = Modifier.widthIn(max = if (this@BoxWithConstraints.maxWidth > 1190.dp) 400.dp else 1200.dp).fillMaxWidth().height(240.dp)
+                        )
+                    }
+                    LoadProjectsContent(component.loadAchivementsComponent, Modifier)
+
+
                 }
-                LoadProjectsContent(component.loadAchivementsComponent, Modifier)
-
-
             }
         }
     }
