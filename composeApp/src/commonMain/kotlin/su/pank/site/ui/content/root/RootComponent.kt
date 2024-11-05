@@ -2,17 +2,18 @@ package su.pank.site.ui.content.root
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
+import su.pank.site.data.TestAchivementsRepository
 import su.pank.site.ui.content.about.AboutComponent
 import su.pank.site.ui.content.about.DefaultAboutComponent
 import su.pank.site.ui.content.profile.DefaultProfileComponent
 import su.pank.site.ui.content.profile.ProfileComponent
-import su.pank.site.ui.content.projects.load.DefaultLoadProjectsComponent
-import su.pank.site.ui.content.projects.load.LoadProjectsComponent
+import su.pank.site.ui.content.achivements.load.DefaultLoadAchivementsComponent
+import su.pank.site.ui.content.achivements.load.LoadAchivementsComponent
 
 interface RootComponent {
     val profileComponent: ProfileComponent
     val aboutComponent: AboutComponent
-    val loadProjectsComponent: LoadProjectsComponent
+    val loadAchivementsComponent: LoadAchivementsComponent
 }
 
 class DefaultRootComponent(
@@ -31,7 +32,7 @@ class DefaultRootComponent(
         "I am a young developer with experience in Kotlin and cross-platform development, as well as UI/UX design. Worked in the Valdai Robots team for 6 months."
     )
 
-    override val loadProjectsComponent: LoadProjectsComponent = DefaultLoadProjectsComponent( childContext("projects"))
+    override val loadAchivementsComponent: LoadAchivementsComponent = DefaultLoadAchivementsComponent( childContext("projects"), TestAchivementsRepository())
 
 
 
