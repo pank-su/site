@@ -8,7 +8,7 @@ import su.pank.site.ui.content.achivements.AchivementsContent
 import su.pank.site.ui.content.achivements.load.LoadAchivementsComponent
 
 @Composable
-fun LoadProjectsContent(loadAchivementsComponent: LoadAchivementsComponent, modifier: Modifier = Modifier){
+fun LoadAchivementsContent(loadAchivementsComponent: LoadAchivementsComponent, modifier: Modifier = Modifier){
     Children(loadAchivementsComponent.childStack) {
         when (val child = it.instance) {
             is LoadAchivementsComponent.Child.Loading -> LoadingContent(child.component, modifier)

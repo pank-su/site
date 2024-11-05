@@ -55,7 +55,8 @@ kotlin {
             implementation(libs.materialKolor)
             implementation(libs.decompose)
             implementation(libs.decompose.extensions)
-
+            implementation("media.kamel:kamel-image-default:1.0.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
         }
 
         wasmJsMain.dependencies {

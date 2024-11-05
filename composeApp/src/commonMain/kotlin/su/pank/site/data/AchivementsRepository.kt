@@ -15,9 +15,40 @@ interface AchivementsRepository {
 
 
 // In future load achivements from another place
-class TestAchivementsRepository: AchivementsRepository {
+class TestAchivementsRepository : AchivementsRepository {
     @OptIn(ExperimentalResourceApi::class)
-    private val _achivements = listOf(Achivement("Second place in BRICS Future Skills & Tech Challenge 2024", "",  Res.getUri("photo_brics.jpg")))
+    private val _achivements = listOf(
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        ),
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        ),
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        ),
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        ),
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        ),
+        Achivement(
+            "Second place in BRICS Future Skills & Tech Challenge 2024",
+            "",
+            "https://sun9-42.userapi.com/impg/08ALXl2z405urIYLIV3myh4YgOZZ1NNRQz4ADg/HjOoPxeYbBI.jpg?size=853x1280&quality=95&sign=66b5254cb39c275cd1a871ded7d2f4d8&type=album"
+        )
+    )
 
     override val achivements: Flow<List<Achivement>> = flow {
         delay(1.seconds)

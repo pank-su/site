@@ -30,5 +30,6 @@ val AppTypography
             fontWeight = FontWeight.ExtraBold,
             fontStyle = FontStyle.Italic
         ),
-        bodyMedium = TextStyle(fontFamily = space, fontSize = 25.sp)
+        bodyMedium = TextStyle(fontFamily = space, fontSize = 25.sp),
+        headlineSmall = TextStyle(fontFamily = jetbrainsMono, fontSize = 16.sp, fontWeight = FontWeight.Medium)
     )

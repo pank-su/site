@@ -7,8 +7,11 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
+import su.pank.site.data.AchivementsRepository
 import su.pank.site.ui.content.loading.LoadingComponent
 import su.pank.site.ui.content.achivements.DefaultAchivementsComponent
 import su.pank.site.ui.content.achivements.AchivementsComponent
@@ -25,10 +28,14 @@ interface LoadAchivementsComponent {
 }
 
 
-class DefaultLoadAchivementsComponent(componentContext: ComponentContext) : LoadAchivementsComponent,
+class DefaultLoadAchivementsComponent(
+    componentContext: ComponentContext,
+    private val achivementsRepository: AchivementsRepository
+) : LoadAchivementsComponent,
     ComponentContext by componentContext {
 
     private val navigation = StackNavigation<Config>()
+
 
     override val childStack: Value<ChildStack<*, LoadAchivementsComponent.Child>> =
         childStack(
@@ -42,14 +49,18 @@ class DefaultLoadAchivementsComponent(componentContext: ComponentContext) : Load
 
     private fun createChild(config: Config, componentContext: ComponentContext): LoadAchivementsComponent.Child {
         return when (config) {
-            Config.Loading -> LoadAchivementsComponent.Child.Loading(LoadingComponent(componentContext, flow {
-                delay(2.seconds)
-                emit(Result.success(listOf(Achivement("test", "test", "test"))))
-            }, {
-                navigation.replaceCurrent(Config.Success(it))
-            }, {
+            Config.Loading -> LoadAchivementsComponent.Child.Loading(
+                LoadingComponent(
+                    componentContext,
+                    achivementsRepository.achivements.catch { Result.failure<List<Achivement>>(it) }
+                        .map { Result.success(it) },
+                    {
+                        navigation.replaceCurrent(Config.Success(it))
+                    },
+                    {
 
-            }))
+                    })
+            )
 
             is Config.Success -> LoadAchivementsComponent.Child.Projects(
                 DefaultAchivementsComponent(
@@ -79,7 +90,7 @@ data class Achivement(
 )
 
 fun Achivement.toAchivementComponent(componentContext: ComponentContext) =
-    su.pank.site.ui.content.achivements.project.DefaultAchivementComponent(
+    DefaultAchivementComponent(
         componentContext,
         name,
         description,
