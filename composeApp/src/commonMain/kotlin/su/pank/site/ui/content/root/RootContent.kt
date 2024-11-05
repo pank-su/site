@@ -2,6 +2,8 @@ package su.pank.site.ui.content.root
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -37,9 +39,10 @@ fun RootContent(component: RootComponent, modifier: Modifier = Modifier) {
             }
         }
     }
+    val scrollState = rememberScrollState()
     AppTheme {
         BoxWithConstraints(modifier=Modifier.fillMaxSize()) {
-            Surface(modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerLow) {
+            Surface(modifier.fillMaxSize().verticalScroll(scrollState), color = MaterialTheme.colorScheme.surfaceContainerLow) {
                 Column(
                     modifier = Modifier.widthIn(max = 1200.dp).padding(start = padding, end = padding, top = padding),
                     horizontalAlignment = Alignment.CenterHorizontally
