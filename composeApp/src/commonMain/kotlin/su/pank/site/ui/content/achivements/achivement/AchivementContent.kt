@@ -75,10 +75,8 @@ fun AchivementContent(component: AchivementComponent, modifier: Modifier = Modif
             Box(
                 modifier = Modifier.fillMaxSize().background(
                     Brush.verticalGradient(
-                        0.6f to MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.3f),
-                        1f to MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f),
-
-
+                        0.3f to MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0f),
+                        1f to MaterialTheme.colorScheme.primaryContainer.copy(alpha = 1f),
                         )
                 )
             ) {
