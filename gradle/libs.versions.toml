@@ -1,8 +1,8 @@
 [versions]
 androidx-lifecycle = "2.8.0"
-compose-plugin = "1.7.0"
+compose-plugin = "1.7.1"
 junit = "4.13.2"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 materialKolor = "2.0.0"
 decompose = "3.2.1"
 
