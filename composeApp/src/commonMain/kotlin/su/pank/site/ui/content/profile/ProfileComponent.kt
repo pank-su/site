@@ -14,6 +14,6 @@ interface ProfileComponent {
 class DefaultProfileComponent(componentContext: ComponentContext) : ProfileComponent,
     ComponentContext by componentContext {
     override val name: String = "Pankov Vasya"
-    override val description: String = "Cross-Platform Development, UI/UX Design"
+    override val description: String = "Cross-Platform Development, UI/UX"
     override val avatar: DrawableResource = Res.drawable.avatar
 }

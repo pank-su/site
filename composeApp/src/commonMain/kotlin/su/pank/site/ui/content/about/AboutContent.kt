@@ -25,7 +25,7 @@ fun AboutContent(aboutComponent: AboutComponent, modifier: Modifier = Modifier) 
             Spacer(modifier = Modifier.weight(1f))
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.End), modifier = Modifier.fillMaxWidth()) {
                 AssistChip(onClick = {
-                    uriHandler.openUri("https://t.me/pank_su")
+                    uriHandler.openUri("https://t.me/m/yr51Cn9yZGNi")
                 },{
                     Text("Telegram")
                 }, leadingIcon = {
