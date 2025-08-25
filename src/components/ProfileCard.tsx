@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card"
-import { profile } from "@/data/content"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+import { profile } from "@/data/content";
 
 export function ProfileCard() {
   return (
@@ -9,14 +9,19 @@ export function ProfileCard() {
         <Avatar className="h-16 w-16">
           <AvatarImage src={profile.avatar} alt={profile.name} />
           <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">
-            {profile.name.split(' ').map(n => n[0]).join('')}
+            {profile.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </AvatarFallback>
         </Avatar>
         <div className="flex-1">
-          <h2 className="text-2xl font-bold text-primary mb-2">{profile.name}</h2>
+          <h2 className="text-2xl font-bold text-primary mb-2">
+            {profile.name}
+          </h2>
           <p className="text-muted-foreground">{profile.description}</p>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
